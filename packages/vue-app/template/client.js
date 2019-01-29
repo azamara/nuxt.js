@@ -75,12 +75,14 @@ Vue.config.$nuxt.<%= globals.nuxt %> = true
 const errorHandler = Vue.config.errorHandler || console.error
 
 // Create and mount App
-createApp()
-  .then(mountApp)
-  .catch((err) => {
-    err.message = '[nuxt] Error while mounting app: ' + err.message
-    errorHandler(err)
-  })
+window.onload = function() {
+  createApp()
+    .then(mountApp)
+    .catch((err) => {
+      err.message = '[nuxt] Error while mounting app: ' + err.message
+      errorHandler(err)
+    })
+}
 
 function componentOption(component, key, ...args) {
   if (!component || !component.options || !component.options[key]) {
